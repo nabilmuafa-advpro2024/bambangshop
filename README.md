@@ -77,6 +77,9 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Dalam kasus ini, penggunaan struct saja sudah cukup. Hal ini karena hanya ada satu jenis/class observer pada kasus BambangShop ini, yaitu Subscriber. Namun, apabila kedepannya akan ada jenis observer lain, maka penggunaan trait akan menjadi lebih strategis. Dengan trait atau interface, setiap jenis observer yang berbeda dapat diberikan definisi methods yang sama untuk menerima data dari publisher. Aplikasi menjadi lebih terbuka terhadap modifikasi.
+2. Penggunaan DashMap disini diperlukan, karena DashMap dapat memberikan pemetaan yang lebih baik antara id Program dan url Subscriber. Apabila kita hanya menggunakan Vec saja yang hanya bisa menyimpan data satu dimensi, maka akan diperlukan lebih dari satu Vec untuk pemetaan antara id Program dan url Subscriber. Hal ini dapat menghambat modifikasi yang perlu dilakukan pada data.
+3. DashMap masih lebih diperlukan karena DashMap memang dioptimisasi sedemikian rupa untuk bisa digunakan dalam multithreading. Dengan thread safetynya, operasi yang multithreaded pada aplikasi BambangShop dapat berjalan dengan lebih aman meskipun map SUBSCRIBER akan diakses oleh banyak thread. Di sisi lain, Singleton pattern memang akan memastikan bahwa hanya akan ada satu instance dari objek yang dibuat, akan tetapi implementasi Singleton pattern secara umum tidak menjamin thread safety, tidak seperti DashMap.
 
 #### Reflection Publisher-2
 
